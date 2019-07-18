@@ -1,0 +1,7 @@
+node_modules
+history
+package-lock.json
+.idea
+.vs
+.vscode
+.git

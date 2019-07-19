@@ -16,7 +16,7 @@ module.exports = {
         ]
     },
     devServer: { //开发服务器的配置
-        port: 3000,
+        port: 8000,
         progress: true, //进度条
         contentBase: './dist',
         open: true

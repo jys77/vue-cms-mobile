@@ -7,9 +7,9 @@
     </mt-swipe>
 
     <ul class="mui-table-view mui-grid-view mui-grid-9">
-        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/newslist">
                 <img src="../../images/menu1.png" alt="">
-                <div class="mui-media-body">News</div></a></li>
+                <div class="mui-media-body">News</div></router-link></li>
         <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
                 <img src="../../images/menu2.png" alt="">
                 <div class="mui-media-body">Pictures</div></a></li>

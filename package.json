@@ -42,7 +42,10 @@
   "dependencies": {
     "@babel/runtime": "^7.5.4",
     "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
     "mint-ui": "^2.2.13",
+    "moment": "^2.24.0",
+    "v-viewer": "^1.4.2",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.1",
     "vue-resource": "^1.5.1",

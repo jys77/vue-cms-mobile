@@ -1,7 +1,10 @@
 <template>
     <div class="app-container">
-    <mt-header fixed title="Vue Project@1"></mt-header>
-
+    <mt-header fixed title="Vue-CMS-Mobile">
+		<router-link v-show="isBack" to slot="left">
+			<mt-button icon='back' @click="prevWeb">Back</mt-button>
+		</router-link>
+	</mt-header>
     <transition>
 	<router-view></router-view>
 	</transition>
@@ -32,7 +35,16 @@ export default {
 	data(){
 		return{}
 	},
-	methods: {}
+	computed:{
+		isBack() {
+			return this.$route.path !="/home"
+		}
+	},
+	methods: {
+		prevWeb() {
+			this.$router.go(-1)
+		}
+	}
 }
 </script>
 
@@ -40,6 +52,7 @@ export default {
 .mint-header {
 	z-index: 99 !important;
 }
+
 .app-container {
     padding-top: 40px;
 	padding-bottom: 50px;

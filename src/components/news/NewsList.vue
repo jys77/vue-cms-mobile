@@ -1,14 +1,14 @@
 <template>
 <div>
     <ul class="mui-table-view">
-        <li class="mui-table-view-cell mui-media" v-for='item in newslist' :key='item.id'>
-            <router-link :to="'newsinfo/' + item.id ">
+        <li class="mui-table-view-cell mui-media" v-for='(item,index) in newslist' :key='index'>
+            <router-link :to="'newsinfo/' + item._id ">
                 <img class="mui-media-object mui-pull-left" :src="item.img_url">
                 <div class="mui-media-body">
                     <h3>{{ item.title }}</h3>
                     <p class='mui-ellipsis'>
-                        <span>{{ item.add_time }}</span>
-                        <span>{{ item.click }} viewd</span>
+                        <span>{{ item.add_time | DateFormat }}</span>
+                        <span>{{ item.clicked }} clicked</span>
                     </p>
                 </div>
             </router-link>
@@ -32,9 +32,9 @@ export default {
     },
     methods: {
         getNewsList(){
-            this.$http.get('http://localhost:3000/getnewslist').then(result => {
+            this.$http.get('http://localhost:3030/api/getnews').then(result => {
                 if(result.body.status === 0){
-                    this.newslist = result.body.message
+                    this.newslist = result.body.news
                 }else {
                     Toast('Failed to load news list.')
                 }

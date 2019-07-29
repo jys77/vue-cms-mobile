@@ -16,7 +16,7 @@ module.exports = {
         ]
     },
     devServer: { //开发服务器的配置
-        port: 8000,
+        port: 8080,
         progress: true, //进度条
         contentBase: './dist',
         open: true
@@ -46,9 +46,9 @@ module.exports = {
             canPrint: true
             
         }),
-        new webpack.ProvidePlugin({
-            $: 'jquery'
-        }),
+        // new webpack.ProvidePlugin({
+        //     $: 'jquery'
+        // }),
         new VueLoaderPlugin()
     ],
     module: {

@@ -13,9 +13,9 @@
         <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/photolist">
                 <img src="../../images/menu2.png" alt="">
                 <div class="mui-media-body">Photos</div></router-link></li>
-        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/merchlist">
                 <img src="../../images/menu3.png" alt="">
-                <div class="mui-media-body">Shopping</div></a></li>
+                <div class="mui-media-body">Merch</div></router-link></li>
         <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
                 <img src="../../images/menu4.png" alt="">
                 <div class="mui-media-body">Comments</div></a></li>
@@ -44,7 +44,7 @@ export default {
     },
     methods: {
         getSwipe(){
-            this.$http.get('http://localhost:3000/getswipe').then(result => {
+            this.$http.get('http://localhost:3030/api/getbanners').then(result => {
                 // console.log(result.body)
                 if (result.body.status == 0) {
                     this.swipelist = result.body.message

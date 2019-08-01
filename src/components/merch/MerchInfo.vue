@@ -1,6 +1,11 @@
 <template>
     <div class="merch-container">
-
+        <transition
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @after-enter="afterEnter">
+            <div class="ball" v-show="ballFlag" ref="ball"></div>  
+        </transition>
         <div class="mui-card">
             <div class="mui-card-content">
                 <div class="mui-card-content-inner">
@@ -24,14 +29,14 @@
                     <div>
                         <div>
                             <span>Qty:</span>  
-                            <div class="mui-numbox" data-numbox-min='1' data-numbox-max='9'>
+                            <div class="mui-numbox" data-numbox-min='1'>
 					            <button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
-                                <input id="test" class="mui-input-numbox" type="number" value="1" />
+                                <input id="test" class="mui-input-numbox" type="number" value="1" ref="numbox" @change="countChanged"/>
                                 <button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
 				            </div>
                         </div>
                         <p class="button">
-                            <mt-button plain type="default" size="small">Add to Cart</mt-button>
+                            <mt-button plain type="default" size="small" @click="addToCart">Add to Cart</mt-button>
                             <mt-button plain type="default" size="small">Buy Now</mt-button>
                         </p>
                     </div>
@@ -59,15 +64,24 @@ export default {
     data(){
         return {
             merchId: this.$route.params.merchId,
-            merchinfo: []
+            merchinfo: [],
+            ballFlag: false,
+            count: 1
         }
     },
     created(){
         this.getmerchinfo()
     },
     mounted(){
-        mui('.mui-numbox').numbox()
+        this.muiJS('.mui-numbox').numbox()
     },
+    watch: {
+    merchinfo() {
+      this.muiJS(".mui-numbox")
+        .numbox()
+        .setOption("max", this.merchinfo.stock);
+    }
+  },
     methods: {
         getmerchinfo(){
             this.$http.get('http://localhost:3030/api/getmerchinfo?merchId=' + this.merchId).then(result =>{
@@ -75,6 +89,39 @@ export default {
                     this.merchinfo = result.body.merch
                 }
             })
+        },
+        addToCart(){
+            this.ballFlag = !this.ballFlag;
+
+            const merchinfo = {
+                id: this.merchId,
+                count: this.count,
+                price: this.merchinfo.new_price,
+                selected: true
+            }
+
+            this.$store.commit('addToCart', merchinfo)
+        },
+        beforeEnter(el) {
+            el.style.transform = "translate(0, 0)"
+        },
+        enter(el,done) {
+            const ballPosition = this.$refs.ball.getBoundingClientRect();
+            const cartPosition = document.getElementById('badge').getBoundingClientRect();
+            const xDist = cartPosition.left - ballPosition.left;
+            const yDist = cartPosition.top - ballPosition.top;
+            el.offsetWidth;
+            el.style.transform = `translate(${xDist}px, ${yDist}px)`;
+            el.style.transition ="all 0.5s cubic-bezier(.4,-0.3,1,.68)";
+            done()
+        },
+        afterEnter(el) {
+            this.ballFlag = !this.ballFlag
+        },
+        countChanged(){
+            let count = parseInt(window.event.target.value);
+            if (count > this.merchinfo.stock) count = this.merchinfo.stock;
+            this.count = count;
         }
     }
 }
@@ -104,6 +151,18 @@ export default {
             text-decoration: line-through;
         }
         
+    }
+
+    
+    div.ball {
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        background-color: red;
+        position:absolute;
+        z-index: 99;
+        top:408px;
+        left:108px;
     }
 }
 

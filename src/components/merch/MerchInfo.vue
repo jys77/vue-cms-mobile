@@ -84,7 +84,7 @@ export default {
   },
     methods: {
         getmerchinfo(){
-            this.$http.get('http://localhost:3030/api/getmerchinfo?merchId=' + this.merchId).then(result =>{
+            this.$http.get('getmerchinfo?merchId=' + this.merchId).then(result =>{
                 if(result.body.status === 0) {
                     this.merchinfo = result.body.merch
                 }

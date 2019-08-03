@@ -38,7 +38,7 @@ export default {
     },
     methods: {
         getMerchList(){
-            this.$http.get('http://localhost:3030/api/getmerch?page=' + this.page).then(result => {
+            this.$http.get('getmerch?page=' + this.page).then(result => {
                 if(result.body.status === 0) {
                     this.merchList = this.merchList.concat(result.body.merch)
                 }

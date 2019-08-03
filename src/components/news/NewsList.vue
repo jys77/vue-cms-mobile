@@ -32,7 +32,7 @@ export default {
     },
     methods: {
         getNewsList(){
-            this.$http.get('http://localhost:3030/api/getnews').then(result => {
+            this.$http.get('getnews').then(result => {
                 if(result.body.status === 0){
                     this.newslist = result.body.news
                 }else {

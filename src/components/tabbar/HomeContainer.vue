@@ -44,7 +44,7 @@ export default {
     },
     methods: {
         getSwipe(){
-            this.$http.get('http://localhost:3030/api/getbanners').then(result => {
+            this.$http.get('getbanners').then(result => {
                 // console.log(result.body)
                 if (result.body.status == 0) {
                     this.swipelist = result.body.message

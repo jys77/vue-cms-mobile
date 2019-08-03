@@ -20,7 +20,7 @@ export default {
     },
     methods:{
         getPhotoDetail(){
-            this.$http.get('http://localhost:3030/api/getphodetail?phoId=' + this.phoId).then(result => {
+            this.$http.get('getphodetail?phoId=' + this.phoId).then(result => {
                 if(result.body.status === 0) {
                     this.pho = result.body.pho.phos
                 }

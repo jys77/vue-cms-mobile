@@ -12,6 +12,10 @@ import moment from 'moment'
 Vue.use(VueRouter)
 Vue.use(VueResource)
 
+Vue.http.options.root = 'http://localhost:3030/api'
+
+
+
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
@@ -85,7 +89,7 @@ const store = new Vuex.Store({
             if(item.selected) {
               o.count += item.count
               o.amount += item.price * item.count
-              o.amount = parseFloat(o.amount).toFixed(2)
+              o.amount = parseFloat(o.amount.toFixed(2))
             }
           })
           return o

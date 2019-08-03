@@ -71,7 +71,7 @@ export default {
       if(idArr.length <= 0) {
         return
       }
-      this.$http.get('http://localhost:3030/api/getcartlist/' + idArr.join(',')).then(result => {
+      this.$http.get('getcartlist/' + idArr.join(',')).then(result => {
         if(result.body.status === 0) {
           this.cartlist = result.body.cart
         }

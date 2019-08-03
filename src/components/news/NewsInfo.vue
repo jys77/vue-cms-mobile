@@ -26,7 +26,7 @@ export default {
     },
     methods:{
         getNewsinfo(){
-            this.$http.get("http://localhost:3030/api/getnewsinfo?newsId=" + this.id).then(res => {
+            this.$http.get("getnewsinfo?newsId=" + this.id).then(res => {
                 if(!res.body.status == 0) {
                     Toast('Failed loading the article!')
                 return

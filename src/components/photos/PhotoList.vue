@@ -39,12 +39,12 @@ export default {
     },
     mounted(){
         mui('.mui-scroll-wrapper').scroll({
-	        deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+	        deceleration: 0.0005 
         });
     },
     methods: {
         getAllTypes(){
-            this.$http.get('http://localhost:3030/api/getphotypes').then(result => {
+            this.$http.get('getphotypes').then(result => {
                 if(result.body.status === 0) {
                     this.types = result.body.types
                     this.types.unshift("All")
@@ -53,7 +53,7 @@ export default {
         },
         getPhotosByType(type){
             if(type != undefined) this.type = type
-            this.$http.get('http://localhost:3030/api/getphos?type=' + this.type).then(result => {
+            this.$http.get('getphos?type=' + this.type).then(result => {
                 if(result.body.status != 0) {
                     return Toast('No photos!')
                 }

@@ -15,19 +15,19 @@ module.exports = {
             new OptimizeCSSAssetsPlugin()
         ]
     },
-    devServer: { //开发服务器的配置
+    devServer: { 
         port: 8080,
-        progress: true, //进度条
+        progress: true, 
         contentBase: './dist',
         open: true
     },
-    mode: 'development', // production development
-    entry:'./src/main.js', //入口
+    mode: 'development', 
+    entry:'./src/main.js', 
     output: {
-        filename: 'bundle.js', //打包后的文件名
-        path: path.resolve(__dirname, 'dist'),//必须是绝对路径
+        filename: 'bundle.js', 
+        path: path.resolve(__dirname, 'dist'),
     },
-    plugins: [ //数组
+    plugins: [ 
         new HtmlWebpackPlugin({
             template: './src/index.html',
             filename: 'index.html'
@@ -46,9 +46,6 @@ module.exports = {
             canPrint: true
             
         }),
-        // new webpack.ProvidePlugin({
-        //     $: 'jquery'
-        // }),
         new VueLoaderPlugin()
     ],
     module: {
@@ -67,7 +64,7 @@ module.exports = {
             //     use: {
             //         loader: 'eslint-loader',
             //         options: {
-            //             enforce: 'pre' //强制优先执行loader
+            //             enforce: 'pre' 
             //         }
             //     }
             // },
